@@ -6,11 +6,11 @@ package com.yiting.readwritingsplitjdbc;
 public class DynamicDataSourceHolder {
 	public static final ThreadLocal<String> holder=new ThreadLocal<>();
 
-	public static void putDataSource(String datasourceName){
+	public static void putDataSourceKey(String datasourceName){
 		holder.set(datasourceName);
 	}
 
-	public static String getDataSouce() {
+	public static String getDataSouceKey() {
 		return holder.get();
 	}
 }

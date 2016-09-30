@@ -38,7 +38,7 @@
     </bean>
 
 
-    <bean id="slavedataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="slavedataSource0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.slave.driverClassName}"/>
         <property name="url" value="${jdbc.slave.url}"/>
         <property name="username" value="${jdbc.slave.username}"/>
@@ -52,13 +52,46 @@
         <property name="testOnBorrow" value="true"></property>
     </bean>
 
+    <bean id="slavedataSource1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.slave.driverClassName}"/>
+        <property name="url" value="${jdbc.slave.url}"/>
+        <property name="username" value="${jdbc.slave.username}"/>
+        <property name="password" value="${jdbc.slave.password}"/>
+        <property name="initialSize" value="${jdbc.slave.initialSize}"/>
+        <property name="maxActive" value="${jdbc.slave.maxActive}"/>
+        <property name="maxIdle" value="${jdbc.slave.maxIdle}"/>
+        <property name="minIdle" value="${jdbc.slave.minIdle}"/>
+        <property name="logAbandoned" value="true"></property>
+        <property name="validationQuery" value="select 1 from dual"></property>
+        <property name="testOnBorrow" value="true"></property>
+    </bean>
+
+
+    <bean id="slavedataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.slave.driverClassName}"/>
+        <property name="url" value="${jdbc.slave.url}"/>
+        <property name="username" value="${jdbc.slave.username}"/>
+        <property name="password" value="${jdbc.slave.password}"/>
+        <property name="initialSize" value="${jdbc.slave.initialSize}"/>
+        <property name="maxActive" value="${jdbc.slave.maxActive}"/>
+        <property name="maxIdle" value="${jdbc.slave.maxIdle}"/>
+        <property name="minIdle" value="${jdbc.slave.minIdle}"/>
+        <property name="logAbandoned" value="true"></property>
+        <property name="validationQuery" value="select 1 from dual"></property>
+        <property name="testOnBorrow" value="true"></property>
+    </bean>
+
+
+    <!--配置一主多从-->
     <bean id="dataSource" class="com.yiting.readwritingsplitjdbc.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <!-- write -->
                 <entry key="master" value-ref="masterdataSource"/>
                 <!-- read -->
-                <entry key="slave" value-ref="slavedataSource"/>
+                <entry key="slave0" value-ref="slavedataSource0"/>
+                <entry key="slave1" value-ref="slavedataSource1"/>
+                <entry key="slave2" value-ref="slavedataSource2"/>
             </map>
 
         </property>

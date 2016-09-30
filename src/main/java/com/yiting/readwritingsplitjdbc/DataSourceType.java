@@ -11,5 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface DataSourceType {
+	String MASTER="master";
+	String SLAVE="slave";
 	String value() default "master";
 }

@@ -23,7 +23,7 @@ public class DatasourceAdvice {
 			Method m = classz[0].getMethod(method, parameterTypes);
 			if (m != null && m.isAnnotationPresent(DataSourceType.class)) {
 				DataSourceType dataSourceType = m.getAnnotation(DataSourceType.class);
-				DynamicDataSourceHolder.putDataSource(dataSourceType.value());
+				DynamicDataSourceHolder.putDataSourceKey(dataSourceType.value());
 				System.out.println("dataSourceType:" + dataSourceType.value());
 			}
 		} catch (Exception e) {
