@@ -44,4 +44,8 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	}
 
 
+
+	//Todo 跑一个定时任务来 check，Connection的死活，从而保证如果master宕机则进行报警，slave宕机则进行salve切换，如果所有salve挂掉，则切换到主上。
+
+
 }
